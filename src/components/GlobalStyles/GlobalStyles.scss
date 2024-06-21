@@ -1,0 +1,21 @@
+@import 'normalize.css';
+@import './reset.scss';
+
+:root {
+    --primary: red;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    text-rendering: optimizeSpeed;
+}
