@@ -57,9 +57,8 @@ function Header() {
             {/* actions */}
             <div className={cx('actions')}>
                 {/* buttons */}
-                <Button bigger href="/upload">
-                    <FontAwesomeIcon className={cx('plus')} icon={faPlus} />
-                    <span>Upload</span>
+                <Button bigger href="/upload" leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                    Upload
                 </Button>
                 <Button primarySolid>Log in</Button>
 
