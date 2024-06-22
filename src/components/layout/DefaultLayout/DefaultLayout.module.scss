@@ -1,0 +1,16 @@
+.wrapper {
+}
+
+.container {
+    display: flex;
+    height: 100rem;
+}
+
+.sidebar {
+    min-width: 24rem;
+    border-right: 1px solid red;
+}
+
+.content {
+    flex: 1;
+}
