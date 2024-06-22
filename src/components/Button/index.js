@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
 import styles from './Button.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +16,7 @@ function Button({
     circleOutline = false,
     bigger = false,
     large = false,
+    disable = false,
     leftIcon,
     rightIcon,
     ...passProps
@@ -35,11 +35,18 @@ function Button({
         Comp = 'a';
     }
 
+    if (disable) {
+        Object.keys(props).forEach((key) => {
+            if (key.startsWith('on') && typeof props[key] === 'function') delete props[key];
+        });
+    }
+
     const clases = cx('wrapper', {
         [className]: className,
         'primary-solid': primarySolid,
         'primary-outline': primaryOutline,
         'circle-outline': circleOutline,
+        disable,
         bigger,
         large,
     });
