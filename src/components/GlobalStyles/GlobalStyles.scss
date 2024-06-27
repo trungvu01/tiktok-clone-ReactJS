@@ -6,6 +6,7 @@
     --primary: rgb(254, 44, 85);
     --white: #fff;
     --black: #000;
+    --text-color: rgb(22, 24, 35);
 }
 
 * {
@@ -18,7 +19,8 @@ html {
     font-size: 62.5%;
 }
 
-body {
+body,
+button {
     font-size: 1.6rem;
     text-rendering: optimizeSpeed;
     font-family: 'Poppins', sans-serif;

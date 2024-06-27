@@ -1,17 +1,93 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
 import { useState } from 'react';
-import { faSearch, faSpinner, faCircleXmark, faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
+import HeadlessTippy from '@tippyjs/react/headless';
+import {
+    faSearch,
+    faSpinner,
+    faCircleXmark,
+    faPlus,
+    faCircle,
+    faEarthAsia,
+    faHouseUser,
+    faCircleQuestion,
+    faMoon,
+    faCheck,
+} from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
 
 const cx = classNames.bind(styles);
+const MENU_LIST = [
+    {
+        icon: <FontAwesomeIcon icon={faHouseUser} />,
+        title: 'Creator tools',
+        children: {
+            title: 'Creator tools',
+            data: [
+                {
+                    icon: <FontAwesomeIcon icon={faLightbulb} />,
+                    title: 'LIVE Creator Hub',
+                    to: '/live/creator',
+                },
+            ],
+        },
+    },
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faMoon} />,
+        title: 'Dark mode',
+        children: {
+            title: 'Dark mode',
+            data: [
+                {
+                    icon: <></>,
+                    title: 'Use device theme',
+                },
+                {
+                    icon: <></>,
+                    title: 'Dark mode',
+                },
+                {
+                    icon: <FontAwesomeIcon icon={faCheck} />,
+                    title: 'Light mode',
+                },
+            ],
+        },
+    },
+];
+
+function handelChangeItem(item) {
+    console.log(item);
+}
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
@@ -23,9 +99,8 @@ function Header() {
             </Link>
 
             {/* search */}
-            <Tippy
+            <HeadlessTippy
                 // visible={searchResult.length > 0}
-                visible={false}
                 interactive
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
@@ -52,7 +127,7 @@ function Header() {
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </div>
-            </Tippy>
+            </HeadlessTippy>
 
             {/* actions */}
             <div className={cx('actions')}>
@@ -63,11 +138,13 @@ function Header() {
                 <Button primarySolid>Log in</Button>
 
                 {/* option */}
-                <span className={cx('option')}>
-                    <FontAwesomeIcon icon={faCircle} />
-                    <FontAwesomeIcon icon={faCircle} />
-                    <FontAwesomeIcon icon={faCircle} />
-                </span>
+                <Menu items={MENU_LIST} onChange={handelChangeItem}>
+                    <span className={cx('option')}>
+                        <FontAwesomeIcon icon={faCircle} />
+                        <FontAwesomeIcon icon={faCircle} />
+                        <FontAwesomeIcon icon={faCircle} />
+                    </span>
+                </Menu>
             </div>
         </header>
     );

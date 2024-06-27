@@ -33,6 +33,17 @@
     margin-left: 8px;
 }
 
+.icon,
+.title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 2rem;
+}
+
 // button styles
 .primary-solid {
     color: var(--white);
