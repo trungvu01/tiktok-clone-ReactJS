@@ -1,21 +1,7 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
-import {
-    faSearch,
-    faSpinner,
-    faCircleXmark,
-    faPlus,
-    faCircle,
-    faEarthAsia,
-    faHouseUser,
-    faCircleQuestion,
-    faMoon,
-    faCheck,
-} from '@fortawesome/free-solid-svg-icons';
-import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -23,25 +9,29 @@ import { PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import {
+    CheckIcon,
+    CreatorIcon,
+    DarkmodeIcon,
+    DeleteIcon,
+    KeyboardIcon,
+    LanguageIcon,
+    LoadIcon,
+    OptionIcon,
+    PlusIcon,
+    QuestionIcon,
+    SearchIcon,
+} from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 const MENU_LIST = [
     {
-        icon: <FontAwesomeIcon icon={faHouseUser} />,
-        title: 'Creator tools',
-        children: {
-            title: 'Creator tools',
-            data: [
-                {
-                    icon: <FontAwesomeIcon icon={faLightbulb} />,
-                    title: 'LIVE Creator Hub',
-                    to: '/live/creator',
-                },
-            ],
-        },
+        icon: <CreatorIcon />,
+        title: 'LIVE Creator Hub',
+        to: '/live/creator',
     },
     {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        icon: <LanguageIcon />,
         title: 'English',
         children: {
             title: 'Language',
@@ -58,12 +48,16 @@ const MENU_LIST = [
         },
     },
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <QuestionIcon />,
         title: 'Feedback and help',
         to: '/feedback',
     },
     {
-        icon: <FontAwesomeIcon icon={faMoon} />,
+        icon: <KeyboardIcon />,
+        title: 'Keyboard shortcuts',
+    },
+    {
+        icon: <DarkmodeIcon />,
         title: 'Dark mode',
         children: {
             title: 'Dark mode',
@@ -77,7 +71,7 @@ const MENU_LIST = [
                     title: 'Dark mode',
                 },
                 {
-                    icon: <FontAwesomeIcon icon={faCheck} />,
+                    icon: <CheckIcon width="1.6rem" />,
                     title: 'Light mode',
                 },
             ],
@@ -99,51 +93,53 @@ function Header() {
             </Link>
 
             {/* search */}
-            <HeadlessTippy
-                // visible={searchResult.length > 0}
-                interactive
-                render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            <h4 className={cx('search-title')}>Accounts</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <p className={cx('view-all-result')}>
-                                View all results for "<span>hang</span>"
-                            </p>
-                        </PopperWrapper>
-                    </div>
-                )}
-            >
-                <div className={cx('search')}>
-                    <input spellCheck={false} placeholder="Search" />
-                    <FontAwesomeIcon className={cx('load')} icon={faSpinner} />
-                    <button className={cx('clear')}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+            <div>
+                <HeadlessTippy
+                    visible={searchResult.length > 0}
+                    interactive
+                    render={(attrs) => (
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                            <PopperWrapper>
+                                <h4 className={cx('search-title')}>Accounts</h4>
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
+                                <p className={cx('view-all-result')}>
+                                    View all results for "<span>hang</span>"
+                                </p>
+                            </PopperWrapper>
+                        </div>
+                    )}
+                >
+                    <div className={cx('search')}>
+                        <input spellCheck={false} placeholder="Search" />
+                        <span className={cx('load')}>
+                            <LoadIcon width="1.6rem" />
+                        </span>
+                        <button className={cx('clear')}>
+                            <DeleteIcon width="1.6rem" />
+                        </button>
 
-                    <button className={cx('search-btn')}>
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
-                </div>
-            </HeadlessTippy>
+                        <button className={cx('search-btn')}>
+                            <SearchIcon width="2.4rem" />
+                        </button>
+                    </div>
+                </HeadlessTippy>
+            </div>
 
             {/* actions */}
             <div className={cx('actions')}>
                 {/* buttons */}
-                <Button bigger href="/upload" leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                <Button bigger href="/upload" leftIcon={<PlusIcon />}>
                     Upload
                 </Button>
                 <Button primarySolid>Log in</Button>
 
                 {/* option */}
                 <Menu items={MENU_LIST} onChange={handelChangeItem}>
-                    <span className={cx('option')}>
-                        <FontAwesomeIcon icon={faCircle} />
-                        <FontAwesomeIcon icon={faCircle} />
-                        <FontAwesomeIcon icon={faCircle} />
-                    </span>
+                    <div className={cx('option')}>
+                        <OptionIcon />
+                    </div>
                 </Menu>
             </div>
         </header>

@@ -6,7 +6,7 @@
         content: '';
         position: absolute;
         top: 0;
-        right: 1.6rem;
+        right: 1.25rem;
         transform: translateY(-100%);
         border: 1rem solid;
         border-color: transparent transparent var(--white) transparent;
@@ -25,8 +25,8 @@
         border: none;
         border-radius: 0;
         justify-content: flex-start;
-        color: var(--text-color);
-        font-weight: 500;
+        color: var(--text-color-dark);
+        font-weight: 600;
     }
 }
 
@@ -52,5 +52,5 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 600;
 }

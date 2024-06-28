@@ -42,7 +42,7 @@
         font-size: 1.6rem;
         margin-left: 0.4rem;
         margin-right: 4.6rem;
-        color: var(--text-color);
+        color: var(--text-color-dark);
         caret-color: rgb(254, 44, 85);
         background-color: transparent;
     }
@@ -56,10 +56,12 @@
 .load,
 .clear {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 50%;
     right: calc(var(--search-btn-width) + 0.1rem);
     transform: translateY(-50%);
-    font-size: 1.4rem;
     padding: 0.4rem;
     margin-right: 0.6rem;
     color: rgba(22, 24, 35, 0.34);
@@ -68,11 +70,12 @@
 
 .search-btn {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--search-btn-width);
+    height: inherit;
     color: rgba(22, 24, 35, 0.34);
-    text-align: center;
-    font-size: 1.9rem;
-    padding: 0.9rem 1.6rem 0.9rem 1.2rem;
     border-top-right-radius: 999px;
     border-bottom-right-radius: 999px;
     background-color: transparent;
@@ -112,7 +115,7 @@
 
 .view-all-result {
     padding: 1.2rem 1.6rem;
-    color: var(--text-color);
+    color: var(--text-color-dark);
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 2.1rem;
@@ -136,12 +139,10 @@
 
 .option {
     display: flex;
-    flex-direction: column;
-    padding: 0.6rem 1.2rem;
-    row-gap: 0.4rem;
-    font-size: 0.32rem;
+    align-items: center;
+    justify-content: center;
     margin-left: 1.6rem;
-    color: var(--text-color);
+    color: var(--text-color-dark);
 
     &:hover {
         cursor: pointer;

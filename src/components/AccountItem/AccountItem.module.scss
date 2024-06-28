@@ -20,7 +20,7 @@
 
 .user-id {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.8rem;
@@ -28,10 +28,8 @@
     user-select: none;
 }
 
-.check {
-    font-size: 1.4rem;
-    margin-left: 0.6rem;
-    color: rgb(32, 213, 236);
+.blue-check-icon {
+    margin-left: 0.8rem;
 }
 
 .user-name {

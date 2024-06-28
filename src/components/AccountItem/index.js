@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { BlueCheckIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +18,7 @@ function AccountItem() {
             <div>
                 <h4 className={cx('user-id')}>
                     <span>hangkat6668</span>
-                    <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />
+                    <BlueCheckIcon className={cx('blue-check-icon')} width="1.4rem" />
                 </h4>
                 <p className={cx('user-name')}>Hằng Du Mục</p>
             </div>

@@ -40,7 +40,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
             delay={[0, 300]}
             interactive
             placement="bottom-end"
-            offset={[12, 10]}
+            offset={[12, 16]}
             render={(attrs) => (
                 <div className={cx('menu')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('wrapper-menu')}>
@@ -51,6 +51,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHide={() => setMenus((prev) => prev.slice(0, 1))}
         >
             {children}
         </HeadlessTippy>
