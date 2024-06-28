@@ -57,6 +57,27 @@
         background-color: rgba(22, 24, 35, 0.07);
         border-radius: 999px;
     }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-box {
+        border-radius: 8px;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 1.3125;
+        color: rgb(255, 255, 255);
+        padding: 8px;
+    }
+
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+        top: -0.8rem;
+    }
 }
 
 html {
