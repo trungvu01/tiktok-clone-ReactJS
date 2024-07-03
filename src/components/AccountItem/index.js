@@ -1,28 +1,26 @@
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
 import { BlueCheckIcon } from '~/components/Icons';
+import Image from '~/components/Image';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data }) {
     return (
-        <div className={cx('wrapper')}>
+        <Link to={`/:${data.nickname}`} className={cx('wrapper')}>
             {/* avatar */}
-            <img
-                className={cx('avatar')}
-                src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/4ac7cfcce65646768eb616591613286f~c5_300x300.webp?lk3s=a5d48078&nonce=15275&refresh_token=89b27852399b8ba9e07daf8577efa680&x-expires=1719198000&x-signature=hRuNVjYrXAscZ4PLDRL55aDitnE%3D&shp=a5d48078&shcp=c1333099"
-                alt="hangdumuc"
-            />
+            <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />
 
             {/* info */}
             <div>
                 <h4 className={cx('user-id')}>
-                    <span>hangkat6668</span>
-                    <BlueCheckIcon className={cx('blue-check-icon')} width="1.4rem" />
+                    <span>{data.full_name}</span>
+                    {data.tick && <BlueCheckIcon className={cx('blue-check-icon')} width="1.4rem" />}
                 </h4>
-                <p className={cx('user-name')}>Hằng Du Mục</p>
+                <p className={cx('user-name')}>{data.nickname}</p>
             </div>
-        </div>
+        </Link>
     );
 }
 

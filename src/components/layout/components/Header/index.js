@@ -1,14 +1,10 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
@@ -17,22 +13,20 @@ import {
     CoinsIcon,
     CreatorIcon,
     DarkmodeIcon,
-    DeleteIcon,
     FavorIcon,
     InboxIcon,
     KeyboardIcon,
     LanguageIcon,
     LiveIcon,
-    LoadIcon,
     LogoutIcon,
     MessagesIcon,
     OptionIcon,
     PlusIcon,
     QuestionIcon,
-    SearchIcon,
     SettingsIcon,
     UserIcon,
 } from '~/components/Icons';
+import Search from './Search';
 
 const cx = classNames.bind(styles);
 const MENU_LIST = [
@@ -128,50 +122,19 @@ function handelChangeItem(item) {
 }
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
     const currentUser = true;
 
     return (
         <header className={cx('header')}>
             {/* logo */}
-            <Link className={cx('logo')} to="/">
-                <img src={images.logo} alt="TikTok" />
-            </Link>
+            <div className={cx('logo')}>
+                <Link to="/">
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
+            </div>
 
             {/* search */}
-            <div>
-                <HeadlessTippy
-                    visible={searchResult.length > 0}
-                    interactive
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <p className={cx('view-all-result')}>
-                                    View all results for "<span>hang</span>"
-                                </p>
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input spellCheck={false} placeholder="Search" />
-                        <span className={cx('load')}>
-                            <LoadIcon width="1.6rem" />
-                        </span>
-                        <button className={cx('clear')}>
-                            <DeleteIcon width="1.6rem" />
-                        </button>
-
-                        <button className={cx('search-btn')}>
-                            <SearchIcon width="2.4rem" />
-                        </button>
-                    </div>
-                </HeadlessTippy>
-            </div>
+            <Search />
 
             {/* actions */}
             <div className={cx('actions')}>
