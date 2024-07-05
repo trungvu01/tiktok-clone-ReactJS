@@ -8,6 +8,7 @@ import AccountItem from '~/components/AccountItem';
 import { DeleteIcon, SearchIcon, LoadIcon } from '~/components/Icons';
 import { useDebounce } from '~/components/hooks';
 import styles from './Search.module.scss';
+import { search } from '~/apiServices';
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -29,13 +30,14 @@ function Search() {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURI(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            });
+
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await search(debounced);
+            setSearchResult(result);
+            setLoading(false);
+        };
+        fetchApi();
     }, [debounced]);
 
     const handleClearInput = () => {
@@ -59,9 +61,11 @@ function Search() {
                         {searchResult.map((result) => (
                             <AccountItem key={result.id} data={result} />
                         ))}
-                        <p className={cx('view-all-result')}>
-                            View all results for "<span>{searchValue}</span>"
-                        </p>
+                        {searchValue.trim() && (
+                            <p className={cx('view-all-result')}>
+                                View all results for "<span>{searchValue}</span>"
+                            </p>
+                        )}
                     </PopperWrapper>
                 </div>
             )}
