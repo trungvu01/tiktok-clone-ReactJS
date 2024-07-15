@@ -9,7 +9,7 @@ import Header from './Header';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], onChange = () => {} }) {
+function Menu({ children, items = [], onChange = () => {}, hideOnClick = false }) {
     const [menus, setMenus] = useState([{ data: items }]);
     const [title, setTitle] = useState('');
 
@@ -39,6 +39,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
         <HeadlessTippy
             delay={[0, 300]}
             interactive
+            hideOnClick={hideOnClick}
             placement="bottom-end"
             offset={[12, 12]}
             render={(attrs) => (
@@ -47,7 +48,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
                         {menus.length > 1 && (
                             <Header title={title} onBack={() => setMenus((prev) => prev.slice(0, prev.length - 1))} />
                         )}
-                        {renderItems()}
+                        <div className={cx('wrap-items')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}

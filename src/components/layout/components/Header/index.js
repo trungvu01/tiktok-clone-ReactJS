@@ -8,6 +8,8 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
+import Search from './Search';
+import routesConfig from '~/config/routes';
 import {
     CheckIcon,
     CoinsIcon,
@@ -26,7 +28,6 @@ import {
     SettingsIcon,
     UserIcon,
 } from '~/components/Icons';
-import Search from './Search';
 
 const cx = classNames.bind(styles);
 const MENU_LIST = [
@@ -128,7 +129,7 @@ function Header() {
         <header className={cx('header')}>
             {/* logo */}
             <div className={cx('logo')}>
-                <Link to="/">
+                <Link to={routesConfig.home}>
                     <img src={images.logo} alt="TikTok" />
                 </Link>
             </div>
@@ -150,8 +151,11 @@ function Header() {
                                 <MessagesIcon width="2.6rem" />
                             </Link>
                         </Tippy>
-                        <Tippy content="Inbox" placement="bottom">
-                            <InboxIcon className={cx('inbox')} width="3.2rem" />
+                        <Tippy content="Inbox" placement="bottom" hideOnClick={false}>
+                            <div className={cx('inbox')}>
+                                <InboxIcon width="3.2rem" />
+                                <span className={cx('quantity')}>2</span>
+                            </div>
                         </Tippy>
                     </>
                 ) : (
@@ -160,7 +164,7 @@ function Header() {
 
                 {/* option */}
 
-                <Menu items={currentUser ? MENU_USER : MENU_LIST} onChange={handelChangeItem}>
+                <Menu items={currentUser ? MENU_USER : MENU_LIST} hideOnClick={false} onChange={handelChangeItem}>
                     {currentUser ? (
                         <Image
                             className={cx('user-avatar')}

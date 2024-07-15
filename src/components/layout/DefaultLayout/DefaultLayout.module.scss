@@ -4,6 +4,7 @@
 .container {
     display: flex;
     height: 100rem;
+    margin-top: calc(var(--header-height) + 0.1rem);
 }
 
 .sidebar {

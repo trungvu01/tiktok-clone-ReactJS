@@ -91,7 +91,7 @@ function Search() {
                     </span>
                 )}
 
-                <Link to="/search" className={cx('search-btn')}>
+                <Link to="" className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon width="2.4rem" />
                 </Link>
             </div>
