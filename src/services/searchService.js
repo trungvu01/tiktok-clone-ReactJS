@@ -1,10 +1,10 @@
-import * as request from '~/utils/request';
+import * as httpRequest from '~/utils/httpRequest';
 
 const PATH_SERVICE = 'users/search';
 
-const search = async (q, type = 'less') => {
+const searchService = async (q, type = 'less') => {
     try {
-        const result = await request.get(PATH_SERVICE, {
+        const result = await httpRequest.get(PATH_SERVICE, {
             params: {
                 q,
                 type,
@@ -16,4 +16,4 @@ const search = async (q, type = 'less') => {
     }
 };
 
-export default search;
+export default searchService;

@@ -1,14 +1,14 @@
 import { Fragment } from 'react';
-import { DefaultLayout, HeaderOnly } from '~/components/layout';
+import { DefaultLayout, HeaderOnly } from '~/layouts';
 import { Home, Following, Search, Upload, Profile } from '~/pages';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 const publicRoutes = [
-    { path: routesConfig.home, Component: Home, Layout: DefaultLayout },
-    { path: routesConfig.following, Component: Following, Layout: DefaultLayout },
-    { path: routesConfig.profile, Component: Profile, Layout: DefaultLayout },
-    { path: routesConfig.search, Component: Search, Layout: HeaderOnly },
-    { path: routesConfig.upload, Component: Upload, Layout: Fragment },
+    { path: config.routes.home, Component: Home, Layout: DefaultLayout },
+    { path: config.routes.following, Component: Following, Layout: DefaultLayout },
+    { path: config.routes.profile, Component: Profile, Layout: DefaultLayout },
+    { path: config.routes.search, Component: Search, Layout: HeaderOnly },
+    { path: config.routes.upload, Component: Upload, Layout: Fragment },
 ];
 
 const privateRoutes = [];
