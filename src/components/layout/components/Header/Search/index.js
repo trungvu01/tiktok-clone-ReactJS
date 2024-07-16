@@ -51,51 +51,56 @@ function Search() {
     };
 
     return (
-        <HeadlessTippy
-            visible={showResult && searchResult.length > 0}
-            interactive
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map((result) => (
-                            <AccountItem key={result.id} data={result} />
-                        ))}
-                        {searchValue.trim() && (
-                            <p className={cx('view-all-result')}>
-                                View all results for "<span>{searchValue}</span>"
-                            </p>
-                        )}
-                    </PopperWrapper>
-                </div>
-            )}
-            onClickOutside={handleHideResult}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={searchRef}
-                    value={searchValue}
-                    spellCheck={false}
-                    placeholder="Search"
-                    onChange={(e) => setSearchValue(e.target.value.trimStart())}
-                    onFocus={() => setShowResult(true)}
-                />
-                {!!searchValue && !loading && (
-                    <button className={cx('clear')} onClick={handleClearInput}>
-                        <DeleteIcon width="1.6rem" />
-                    </button>
+        // Using <div> tag around the reference element solves
+        // this by creating a new parentNode context.
+        <div>
+            <HeadlessTippy
+                interactive
+                appendTo="parent"
+                visible={showResult && searchResult.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Accounts</h4>
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
+                            {searchValue.trim() && (
+                                <p className={cx('view-all-result')}>
+                                    View all results for "<span>{searchValue}</span>"
+                                </p>
+                            )}
+                        </PopperWrapper>
+                    </div>
                 )}
-                {loading && (
-                    <span className={cx('load')}>
-                        <LoadIcon width="1.6rem" />
-                    </span>
-                )}
+                onClickOutside={handleHideResult}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={searchRef}
+                        value={searchValue}
+                        spellCheck={false}
+                        placeholder="Search"
+                        onChange={(e) => setSearchValue(e.target.value.trimStart())}
+                        onFocus={() => setShowResult(true)}
+                    />
+                    {!!searchValue && !loading && (
+                        <button className={cx('clear')} onClick={handleClearInput}>
+                            <DeleteIcon width="1.6rem" />
+                        </button>
+                    )}
+                    {loading && (
+                        <span className={cx('load')}>
+                            <LoadIcon width="1.6rem" />
+                        </span>
+                    )}
 
-                <Link to="" className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                    <SearchIcon width="2.4rem" />
-                </Link>
-            </div>
-        </HeadlessTippy>
+                    <Link to="" className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon width="2.4rem" />
+                    </Link>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 

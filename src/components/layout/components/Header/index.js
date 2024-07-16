@@ -126,7 +126,7 @@ function Header() {
     const currentUser = true;
 
     return (
-        <header className={cx('header')}>
+        <header className={cx('header')} id="parent">
             {/* logo */}
             <div className={cx('logo')}>
                 <Link to={routesConfig.home}>
